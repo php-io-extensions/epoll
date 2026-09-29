@@ -1,0 +1,52 @@
+{
+    "name": "php-io-extensions/epoll",
+    "type": "php-ext",
+    "description": "Linux epoll(7) bindings as global PHP functions",
+    "keywords": [
+        "epoll",
+        "linux",
+        "io",
+        "event-loop",
+        "php-ext"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Project Saturn Studios, LLC",
+            "email": "info@projectsaturnstudios.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.4"
+    },
+    "require-dev": {
+        "pestphp/pest": "^4.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "php-ext": {
+        "extension-name": "epoll",
+        "priority": 30,
+        "build-path": ".",
+        "support-zts": true,
+        "support-nts": true,
+        "os-families": [
+            "linux"
+        ],
+        "configure-options": [
+            {
+                "name": "enable-epoll",
+                "description": "Enable the epoll extension",
+                "needs-value": false
+            }
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.10.x-dev"
+        }
+    }
+}
