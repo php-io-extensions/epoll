@@ -1,0 +1,5 @@
+# Keep test tooling out of Composer/PIE distribution archives
+/tests/ export-ignore
+/phpunit.xml export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
