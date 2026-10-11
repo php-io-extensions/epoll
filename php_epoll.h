@@ -4,7 +4,7 @@
 extern zend_module_entry epoll_module_entry;
 #define phpext_epoll_ptr &epoll_module_entry
 
-#define PHP_EPOLL_VERSION "0.10.0"
+#define PHP_EPOLL_VERSION "0.10.5"
 
 ZEND_BEGIN_MODULE_GLOBALS(epoll)
 	int last_errno;
