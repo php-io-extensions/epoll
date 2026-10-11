@@ -1,5 +1,7 @@
 # php-io-extensions/epoll
 
+[![CI](https://img.shields.io/github/actions/workflow/status/php-io-extensions/epoll/ci.yml?style=flat-square&label=CI)](https://github.com/php-io-extensions/epoll/actions/workflows/ci.yml)
+
 Linux epoll(7) as global PHP functions. Hand-written C, one PHP function per libc call, constants from `<sys/epoll.h>`. Linux only.
 
 ## Install
