@@ -16,7 +16,14 @@
 #include <time.h>
 #include <unistd.h>
 
+/* The header is empty unless HAVE_SOCKETS is defined. php_config.h defines it only when
+ * ext/sockets was built into PHP; distributions that build it shared (Debian, Ubuntu)
+ * leave it undefined and still ship the header, so define it here. The declarations
+ * are types and macros only; the Socket class is resolved by name at call time. */
 #if __has_include("ext/sockets/php_sockets.h")
+# ifndef HAVE_SOCKETS
+#  define HAVE_SOCKETS 1
+# endif
 # include "ext/sockets/php_sockets.h"
 # define EPOLL_HAVE_SOCKETS 1
 #endif

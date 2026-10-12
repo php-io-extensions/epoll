@@ -5,7 +5,7 @@ description: Scope, file layout, module globals, optional sockets dependency, er
 resource: epoll.c
 tags: [epoll, c, zend, zts, linux]
 status: draft
-generated: { by: claude-fable/5.1, at: 2026-10-11T19:56:56Z }
+generated: { by: claude-fable/5.1, at: 2026-10-12T03:19:44Z }
 sources:
   - id: epoll-c
     resource: epoll.c
@@ -43,7 +43,7 @@ One field, `last_errno`, zeroed in GINIT (which also updates the TSRM cache unde
 
 # Sockets dependency
 
-`ZEND_MOD_OPTIONAL("sockets")` orders loading after ext/sockets when both are present. The `Socket` class is resolved by name from `CG(class_table)` at call time, never by linking against `php_sockets.so` symbols, so `epoll.so` loads with or without ext/sockets. The `#if __has_include("ext/sockets/php_sockets.h")` guard decides at compile time whether `Socket` objects are accepted at all; a build without the header rejects them with `TypeError`.[^epoll-c]
+`ZEND_MOD_OPTIONAL("sockets")` orders loading after ext/sockets when both are present. The `Socket` class is resolved by name from `CG(class_table)` at call time, never by linking against `php_sockets.so` symbols, so `epoll.so` loads with or without ext/sockets. The `#if __has_include("ext/sockets/php_sockets.h")` guard decides at compile time whether `Socket` objects are accepted at all; a build without the header rejects them with `TypeError`. The header's body is wrapped in `#ifdef HAVE_SOCKETS`, which `php_config.h` defines only when ext/sockets was compiled into PHP; Debian-family packages (Debian, Ubuntu, the ondřej PPA that Forge installs) build it shared and leave it undefined, so `epoll.c` defines `HAVE_SOCKETS` itself before the include. Without that, 0.10.5 failed to compile under PIE on such a PHP with `unknown type name 'php_socket'`.[^epoll-c]
 
 # Errno convention
 
