@@ -134,7 +134,7 @@ $ php --ri epoll
 epoll
 
 epoll support => enabled
-Version => 0.10.x
+Version => 0.11.x
 epoll_pwait2 => libc
 ```
 
